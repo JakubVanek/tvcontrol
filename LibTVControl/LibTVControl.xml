@@ -1,0 +1,589 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibTVControl</name>
+    </assembly>
+    <members>
+        <member name="T:TVControl.LGTV">
+            <summary>
+            LG TV controlling interface.
+            </summary>
+        </member>
+        <member name="P:TVControl.LGTV.ConnOpened">
+            <summary>
+            Gets a value indicating whether is serial connection open.
+            </summary>
+            <value>
+                <c>true</c> if open; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:TVControl.LGTV.ID">
+            <summary>
+            ID of TV
+            </summary>
+            <value>The ID</value>
+        </member>
+        <member name="M:TVControl.LGTV.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.LGTV" /> class.
+            </summary>
+            <param name="device">Device, /dev/ttyS0... or COM1...</param>
+            <param name="id">TV ID</param>
+        </member>
+        <member name="M:TVControl.LGTV.Init">
+            <summary>
+            Init this instance.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.Close">
+            <summary>
+            Close this instance.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.KeyConvert(TVControl.LGTV.TVKey)">
+            <summary>
+            Converts TVKey to string.
+            </summary>
+            <returns>The string to send.</returns>
+            <param name="key">TV Key.</param>
+        </member>
+        <member name="T:TVControl.LGTV.TVKey">
+            <summary>
+            Keys on TV R/C, specifies key code
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Power">
+            <summary>
+            Power key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.TvRad">
+            <summary>
+            TV/Rad key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Input">
+            <summary>
+            Inupt key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.AVMode">
+            <summary>
+            AV Mode key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.EnergySaving">
+            <summary>
+            Energy Saving key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Ratio">
+            <summary>
+            Ratio key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.One">
+            <summary>
+            One key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Two">
+            <summary>
+            Two key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Three">
+            <summary>
+            Three key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Four">
+            <summary>
+            Four key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Five">
+            <summary>
+            Five key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Six">
+            <summary>
+            Six key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Seven">
+            <summary>
+            Seven key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Eight">
+            <summary>
+            Eight key,
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Nine">
+            <summary>
+            Nine key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Zero">
+            <summary>
+            Zero key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.List">
+            <summary>
+            List key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.QView">
+            <summary>
+            Quick View key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.VolumeUp">
+            <summary>
+            Volume Up key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.VolumeDown">
+            <summary>
+            Volume Down key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Mute">
+            <summary>
+            Mute key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.ProgramUp">
+            <summary>
+            Program Up key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.ProgramDown">
+            <summary>
+            Program Down key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.OK">
+            <summary>
+            OK key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Up">
+            <summary>
+            Up arrow key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Down">
+            <summary>
+            Down arrow key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Right">
+            <summary>
+            Right arrow key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Left">
+            <summary>
+            Left arrow key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Menu">
+            <summary>
+            Menu key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Return">
+            <summary>
+            Exit/Return key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Red">
+            <summary>
+            Red key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Green">
+            <summary>
+            Green key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Yellow">
+            <summary>
+            Yellow key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Blue">
+            <summary>
+            Blue key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.TeleText">
+            <summary>
+            Teletext key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.TeleOpt">
+            <summary>
+            Teletext Options key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Subtitle">
+            <summary>
+            Subtitles key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.SimpLink">
+            <summary>
+            SimpLink key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.QMenu">
+            <summary>
+            Quick Menu key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.Info">
+            <summary>
+            Info key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.EPG">
+            <summary>
+            Guide key.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TVKey.MarkFav">
+            <summary>
+            Mark Fav key
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.Send(System.String,System.String)">
+            <summary>
+            Send the specified command with specified data.
+            </summary>
+            <param name="command">Command.</param>
+            <param name="data">Data.</param>
+        </member>
+        <member name="M:TVControl.LGTV.SendKey(TVControl.LGTV.TVKey)">
+            <summary>
+            Sends the key.
+            </summary>
+            <returns>
+                <c>true</c>, if key was sent, <c>false</c> otherwise.</returns>
+            <param name="key">Key.</param>
+        </member>
+        <member name="M:TVControl.LGTV.ToHex(System.Int32)">
+            <summary>
+            Converts number to hex notation.
+            </summary>
+            <returns>Hex.</returns>
+            <param name="number">Number.</param>
+        </member>
+        <member name="M:TVControl.LGTV.ToHex(System.Byte)">
+            <summary>
+            Convert number to hex notation.
+            </summary>
+            <returns>Hex.</returns>
+            <param name="number">Number.</param>
+        </member>
+        <member name="M:TVControl.LGTV.ParseReturn(System.String)">
+            <summary>
+            Parses the TV return code.
+            </summary>
+            <returns>The .</returns>
+            <param name="retval">Retval.</param>
+        </member>
+        <member name="T:TVControl.LGTV.Power">
+            <summary>
+            Power enumeration.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Power.PowerOff">
+            <summary>
+            TV off.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Power.PowerOn">
+            <summary>
+            TV on.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Power.GetStatus">
+            <summary>
+            Query power status.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.SendPower(TVControl.LGTV.Power)">
+            <summary>
+            Sends power command to TV.
+            </summary>
+            <returns>Status or data</returns>
+            <param name="pwr">Mode or query</param>
+        </member>
+        <member name="T:TVControl.LGTV.AspectRatio">
+            <summary>
+            Aspect ratio enumeration.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.Normal">
+            <summary>
+            4:3 ratio.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.Widescreen">
+            <summary>
+            16:9 ratio.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.Zoom">
+            <summary>
+            Zoom ratio (crops 4:3 input to 16:9).
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.Original">
+            <summary>
+            Original source ratio.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.ZoomedNormal">
+            <summary>
+            14:9 (crops 4:3 input ot 14:9).
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.JustScan">
+            <summary>
+            Just Scan (only RGB).
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.FullWide">
+            <summary>
+            Full width of screen.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.CinemaZoom1">
+            <summary>
+            Cinema Zoom 1.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.AspectRatio.GetStatus">
+            <summary>
+            Query aspect ratio.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.SendAspect(TVControl.LGTV.AspectRatio)">
+            <summary>
+            Sends aspect command to TV.
+            </summary>
+            <returns>Status or data</returns>
+            <param name="aspect">Mode or query</param>
+        </member>
+        <member name="T:TVControl.LGTV.ScreenMute">
+            <summary>
+            Screen mute enumeration.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.ScreenMute.Off">
+            <summary>
+            Screen and video running.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.ScreenMute.ScreenOff">
+            <summary>
+            Screen (whole display) off.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.ScreenMute.VideoOff">
+            <summary>
+            Video (only picture) off.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.ScreenMute.GetStatus">
+            <summary>
+            Query screen mute.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.SendScrMute(TVControl.LGTV.ScreenMute)">
+            <summary>
+            Sends screen mute command to TV.
+            </summary>
+            <returns>Status or data</returns>
+            <param name="mute">Mode or query</param>
+        </member>
+        <member name="T:TVControl.LGTV.Volume">
+            <summary>
+            Volume mute enumeration.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Volume.VolumeOn">
+            <summary>
+            Audio running.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Volume.VolumeOff">
+            <summary>
+            Audio off.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Volume.GetStatus">
+            <summary>
+            Query volume mute.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.SendVolumeMute(TVControl.LGTV.Volume)">
+            <summary>
+            Sends volume mute command to TV.
+            </summary>
+            <returns>Status or data</returns>
+            <param name="volume">Mode or query</param>
+        </member>
+        <member name="M:TVControl.LGTV.SendVolume(System.Byte)">
+            <summary>
+            Sends the volume change command to TV.
+            </summary>
+            <returns>Status or data</returns>
+            <param name="level">Level or query (query=255)</param>
+        </member>
+        <member name="T:TVControl.LGTV.EnergySaving">
+            <summary>
+            Energy saving modes enumeration.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.EnergySaving.Off">
+            <summary>
+            No energy saving.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.EnergySaving.Minimum">
+            <summary>
+            Minimal energy saving.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.EnergySaving.Medium">
+            <summary>
+            Medium energy saving.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.EnergySaving.Maximum">
+            <summary>
+            Maximum energy saving.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.EnergySaving.ScreenOff">
+            <summary>
+            Screen Off
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.EnergySaving.GetStatus">
+            <summary>
+            Query energy saving status.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.SendEnergySaving(TVControl.LGTV.EnergySaving)">
+            <summary>
+            Sends the energy saving mode change command to TV.
+            </summary>
+            <returns>Status or data</returns>
+            <param name="mode">Mode or query</param>
+        </member>
+        <member name="F:TVControl.LGTV.SendChannelGetState">
+            <summary>
+            Query code for SendChannel function.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.SendChannel(System.Int32)">
+            <summary>
+            Sends the channel mode change command to TV.
+            </summary>
+            <returns>Status or data</returns>
+            <param name="channel">Channel or query</param>
+        </member>
+        <member name="T:TVControl.LGTV.Input">
+            <summary>
+            Input enumeration.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Input.DTV">
+            <summary>
+            Digital TV.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Input.AV1">
+            <summary>
+            AV no. 1.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Input.AV2">
+            <summary>
+            AV no. 2.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Input.HDMI">
+            <summary>
+            HDMI.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Input.RGB">
+            <summary>
+            RGB (VGA).
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Input.Component">
+            <summary>
+            Component (YPbPr).
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.Input.GetStatus">
+            <summary>
+            The get status.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.SendInput(TVControl.LGTV.Input)">
+            <summary>
+            Sends the input command to TV.
+            </summary>
+            <returns>Status or data</returns>
+            <param name="input">Input or query</param>
+        </member>
+        <member name="M:TVControl.LGTV.SendAutoConfig">
+            <summary>
+            Sends the video autoconfig command to TV. NOTE: only for RGB/VGA.
+            </summary>
+            <returns>
+                <c>true</c>, if success, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:TVControl.ConnNotOpenException">
+            <summary>
+            Connection not open exception.
+            </summary>
+        </member>
+        <member name="M:TVControl.ConnNotOpenException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.ConnNotOpenException" /> class
+            </summary>
+        </member>
+        <member name="M:TVControl.ConnNotOpenException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.ConnNotOpenException" /> class
+            </summary>
+            <param name="message">A <see cref="T:System.String" /> that describes the exception. </param>
+        </member>
+        <member name="M:TVControl.ConnNotOpenException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.ConnNotOpenException" /> class
+            </summary>
+            <param name="message">A <see cref="T:System.String" /> that describes the exception. </param>
+            <param name="inner">The exception that is the cause of the current exception. </param>
+        </member>
+        <member name="M:TVControl.ConnNotOpenException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.ConnNotOpenException" /> class
+            </summary>
+            <param name="context">The contextual information about the source or destination.</param>
+            <param name="info">The object that holds the serialized object data.</param>
+        </member>
+    </members>
+</doc>
