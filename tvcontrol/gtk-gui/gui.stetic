@@ -1020,7 +1020,7 @@
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
-                                <property name="Icon">stock:stock_down Button</property>
+                                <property name="Icon">stock:stock_down Menu</property>
                                 <property name="Label" translatable="yes" />
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="downh" />
@@ -1236,7 +1236,7 @@
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
-                                <property name="Icon">stock:stock_left Button</property>
+                                <property name="Icon">stock:stock_left Menu</property>
                                 <property name="Label" translatable="yes" />
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="lefth" />
@@ -1288,7 +1288,7 @@
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
-                                <property name="Icon">stock:stock_right Button</property>
+                                <property name="Icon">stock:stock_right Menu</property>
                                 <property name="Label" translatable="yes" />
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="righth" />
@@ -1314,7 +1314,7 @@
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
-                                <property name="Icon">stock:stock_up Button</property>
+                                <property name="Icon">stock:stock_up Menu</property>
                                 <property name="Label" translatable="yes" />
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="uph" />
@@ -1406,7 +1406,7 @@
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Type">TextAndIcon</property>
-                                    <property name="Icon">stock:stock_down Button</property>
+                                    <property name="Icon">stock:stock_down Menu</property>
                                     <property name="Label" translatable="yes" />
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="vdownh" />
@@ -1490,7 +1490,7 @@
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Type">TextAndIcon</property>
-                                    <property name="Icon">stock:stock_up Button</property>
+                                    <property name="Icon">stock:stock_up Menu</property>
                                     <property name="Label" translatable="yes" />
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="puph" />
@@ -1519,7 +1519,7 @@
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Type">TextAndIcon</property>
-                                    <property name="Icon">stock:stock_down Button</property>
+                                    <property name="Icon">stock:stock_down Menu</property>
                                     <property name="Label" translatable="yes" />
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="pdownh" />
