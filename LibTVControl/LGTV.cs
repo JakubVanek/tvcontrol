@@ -18,8 +18,9 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#define DENY_HIGHVOLUME
+
 using System;
-using System.IO;
 using System.IO.Ports;
 
 namespace TVControl
@@ -29,37 +30,51 @@ namespace TVControl
     /// </summary>
     public class LGTV
     {
-        // Port
-        SerialPort port;
+        /// <summary>
+        /// Timeout for serial port
+        /// </summary>
+        public const int TIMEOUT = 500;
+
 
         /// <summary>
         /// Gets a value indicating whether is serial connection open.
         /// </summary>
         /// <value><c>true</c> if open; otherwise, <c>false</c>.</value>
-        public bool ConnOpened { get; private set; }
+        public bool Open { get; private set; } = false;
+
 
         /// <summary>
-        /// ID of TV
+        /// Television ID
         /// </summary>
-        /// <value>The ID</value>
+        /// <value>ID for controlling</value>
         public int ID { get; private set; }
+
+
+
+
+        // Port
+        SerialPort port;
+
         // Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="TVControl.LGTV"/> class.
         /// </summary>
-        /// <param name="device">Device, /dev/ttyS0... or COM1...</param>
+        /// <param name="device">Device, /dev/ttyS[0-...] or COM[1-...] -> /dev/ttyS3 or COM1</param>
         /// <param name="id">TV ID</param>
         public LGTV(string device, int id)
         {
-            ConnOpened = false;
+            this.Open = false;
             port = new SerialPort(device, 9600, Parity.None, 8, StopBits.One)
             {
                 NewLine = "\r",
-                ReadTimeout = 5000,
-                WriteTimeout = 5000
+                ReadTimeout = TIMEOUT,
+                WriteTimeout = TIMEOUT
             };
-            ID = id;
+            this.ID = id;
         }
+
+
+
         // Init/Close
         /// <summary>
         /// Init this instance.
@@ -67,7 +82,7 @@ namespace TVControl
         public void Init()
         {
             port.Open();
-            ConnOpened = true;
+            this.Open = true;
         }
 
         /// <summary>
@@ -76,8 +91,11 @@ namespace TVControl
         public void Close()
         {
             port.Close();
-            ConnOpened = false;
+            this.Open = false;
         }
+
+
+
         // Support things
         /// <summary>
         /// Converts TVKey to string.
@@ -86,7 +104,7 @@ namespace TVControl
         /// <param name="key">TV Key.</param>
         public static string KeyConvert(TVKey key)
         {
-            return ToHex((byte)key);
+            return Hex.ToHex((byte)key);
         }
 
         /// <summary>
@@ -263,43 +281,80 @@ namespace TVControl
             /// </summary>
             MarkFav = 30
         }
+
+        /// <summary>
+        /// Write a command with data for specific TV to serial port
+        /// </summary>
+        /// <param name="command">Command</param>
+        /// <param name="data">Data.</param>
+        void Write(string command, string data)
+        {
+            port.WriteLine(String.Format("{0} {1} {2}", command, ID, data));
+        }
+
+
+
+
         // Sending functions
         /// <summary>
         /// Send the specified command with specified data.
         /// </summary>
         /// <param name="command">Command.</param>
         /// <param name="data">Data.</param>
-        public Tuple<bool,string> Send(string command, string data)
+        /// <param name="requestAnswer">Whether to request answer from the TV or not.</param>
+        /// <param name="answer">Answered value or null.</param>
+        /// <returns>Success or fail</returns>
+        public bool Send(string command, string data, bool requestAnswer, out string answer)
         {
-            if (!ConnOpened)
+            answer = null;
+            if (!this.Open)
                 throw new ConnNotOpenException("Connection not opened!!!");
-            int remaining = 3;
-            Tuple<bool,string> retval = new Tuple<bool, string>(false, "BUG");
+            if (!requestAnswer)
+            {
+                try
+                {
+                    Write(command, data);
+                    port.ReadTimeout = TIMEOUT / 4;
+                    bool success1 = ParseReturn(port.ReadTo("x"), out answer);
+                    return success1;
+                }
+                catch (TimeoutException)
+                {
+                }
+                finally
+                {
+                    port.ReadTimeout = TIMEOUT;
+                }
+            }
+
+
+            bool success = false;
+            int remaining = 1;
             bool ok = false;
             while (!ok)
             {
                 try
                 {
-                    port.WriteLine(String.Format("{0} {1} {2}", command, ID, data));
-                    retval = ParseReturn(port.ReadTo("x"));
+                    Write(command, data);
+                    success = ParseReturn(port.ReadTo("x"), out answer);
                     ok = true;
                 }
                 catch (TimeoutException)
                 {
                     if (remaining != 0)
                     {
-                        Console.Error.WriteLine("WARNING: TimeoutException thrown in Send() function, retrying, remaining {0} tries", remaining);
+                        Console.Error.WriteLine("warn: timeout reached, remaining {0}", remaining);
                         remaining--;
                         continue;
                     }
                     else
                     {
-                        Console.Error.WriteLine("WARNING: TimeoutException thrown in Send() function, no more tries, returning BUG");
+                        Console.Error.WriteLine("warn: timeout reached, no answer");
                         break;
                     }
                 }
             }
-            return retval; 
+            return success; 
         }
 
         /// <summary>
@@ -309,35 +364,18 @@ namespace TVControl
         /// <param name="key">Key.</param>
         public bool SendKey(TVKey key)
         {
-            return Send("mc", KeyConvert(key)).Item1;
+            string nic;
+            return Send("mc", KeyConvert(key), false, out nic);
         }
 
-        /// <summary>
-        /// Converts number to hex notation.
-        /// </summary>
-        /// <returns>Hex.</returns>
-        /// <param name="number">Number.</param>
-        public static string ToHex(int number)
-        {
-            return number.ToString("x");
-        }
-
-        /// <summary>
-        /// Convert number to hex notation.
-        /// </summary>
-        /// <returns>Hex.</returns>
-        /// <param name="number">Number.</param>
-        public static string ToHex(byte number)
-        {
-            return number.ToString("x");
-        }
 
         /// <summary>
         /// Parses the TV return code.
         /// </summary>
         /// <returns>The .</returns>
         /// <param name="retval">Retval.</param>
-        public Tuple<bool,string> ParseReturn(string retval)
+        /// <param name = "answer"></param>
+        public bool ParseReturn(string retval, out string answer)
         {
             //         ||[    0   ]   [ 1]   [      2       ]||
             // Format: ||[Command2][ ][ID][ ][OK/NG][DATA][x]||
@@ -345,8 +383,8 @@ namespace TVControl
             // Example: 'a 1 OK01x'
             string data = retval.Substring(5, retval.Length - 5);
             string status = data.Substring(0, 2);
-            string datapart = data.Substring(2, data.Length - 2);
-            return status == "OK" ? new Tuple<bool, string>(true, datapart) : new Tuple<bool, string>(false, datapart);
+            answer = data.Substring(2, data.Length - 2);
+            return status == "OK";
         }
 
         /// <summary>
@@ -373,9 +411,13 @@ namespace TVControl
         /// </summary>
         /// <returns>Status or data</returns>
         /// <param name="pwr">Mode or query</param>
-        public Tuple<bool,string> SendPower(Power pwr)
+        /// <param name = "actual">Actual mode</param>
+        public bool SendPower(Power pwr, out Power actual)
         {
-            return Send("ka", ToHex((byte)pwr));
+            int pow;
+            bool a = Send("ka", pwr == Power.GetStatus, (int)pwr, out pow);
+            actual = (Power)pow;
+            return a;
         }
 
         /// <summary>
@@ -426,9 +468,13 @@ namespace TVControl
         /// </summary>
         /// <returns>Status or data</returns>
         /// <param name="aspect">Mode or query</param>
-        public Tuple<bool,string> SendAspect(AspectRatio aspect)
+        /// <param name = "actual">Actual aspect ration</param>
+        public bool SendAspect(AspectRatio aspect, out AspectRatio actual)
         {
-            return Send("kc", ToHex((byte)aspect));
+            int asp;
+            bool a = Send("kc", aspect == AspectRatio.GetStatus, (int)aspect, out asp);
+            actual = (AspectRatio)asp;
+            return a;
         }
 
         /// <summary>
@@ -459,9 +505,13 @@ namespace TVControl
         /// </summary>
         /// <returns>Status or data</returns>
         /// <param name="mute">Mode or query</param>
-        public Tuple<bool,string> SendScrMute(ScreenMute mute)
+        /// <param name = "actual">Actual screen mute</param>
+        public bool SendScrMute(ScreenMute mute, out ScreenMute actual)
         {
-            return Send("kd", ToHex((byte)mute));
+            int scr;
+            bool a = Send("kd", mute == ScreenMute.GetStatus, (int)mute, out scr);
+            actual = (ScreenMute)scr;
+            return a;
         }
 
         /// <summary>
@@ -488,9 +538,13 @@ namespace TVControl
         /// </summary>
         /// <returns>Status or data</returns>
         /// <param name="volume">Mode or query</param>
-        public Tuple<bool,string> SendVolumeMute(Volume volume)
+        /// <param name = "actual">Actual volume mute</param>
+        public bool SendVolumeMute(Volume volume, out Volume actual)
         {
-            return Send("ke", ToHex((byte)volume));
+            int vol; 
+            bool a = Send("ke", volume == Volume.GetStatus, (int)volume, out vol);
+            actual = (Volume)vol;
+            return a;
         }
 
         /// <summary>
@@ -498,11 +552,22 @@ namespace TVControl
         /// </summary>
         /// <returns>Status or data</returns>
         /// <param name="level">Level or query (query=255)</param>
-        public Tuple<bool,string> SendVolume(byte level)
+        /// <param name = "actual">Actual volume</param>
+        public bool SendVolume(int level, out int actual)
         {
+            #if DENY_HIGHVOLUME
             if (level > 20 && level != 255)
                 throw new InvalidOperationException("Volumes above 20 aren't allowed!!");
-            return Send("kf", ToHex(level));
+            #endif
+
+            string actual_string;
+            string data_string = Hex.ToHex(level);
+            bool success = Send("kf", data_string, level == 255, out actual_string);
+            if (success)
+                actual = Hex.FromHex(actual_string);
+            else
+                actual = 0;
+            return success;
         }
 
         /// <summary>
@@ -541,26 +606,44 @@ namespace TVControl
         /// </summary>
         /// <returns>Status or data</returns>
         /// <param name="mode">Mode or query</param>
-        public Tuple<bool,string> SendEnergySaving(EnergySaving mode)
+        /// <param name = "actual">Actual energy saving</param>
+        public bool SendEnergySaving(EnergySaving mode, out EnergySaving actual)
         {
-            return Send("jq", ToHex((byte)mode));
+            int es; 
+            bool a = Send("jq", mode == EnergySaving.GetStatus, (int)mode, out es);
+            actual = (EnergySaving)es;
+            return a;
         }
 
         /// <summary>
         /// Query code for SendChannel function.
         /// </summary>
-        public const int SendChannelGetState = Int32.MaxValue;
+        public const int CHANNEL_GETSTATE = Int32.MaxValue;
 
         /// <summary>
         /// Sends the channel mode change command to TV.
         /// </summary>
         /// <returns>Status or data</returns>
         /// <param name="channel">Channel or query</param>
-        public Tuple<bool,string> SendChannel(int channel)
+        /// <param name = "actual">Actual channel</param>
+        public bool SendChannel(int channel, out int actual)
         {
-            if (channel == SendChannelGetState)
-                return Send("ma", ToHex(255));
-            return Send("ma", String.Format("0 {0:x} 10", channel));
+            string actual_string;
+            bool retval;
+            bool getstate = channel == CHANNEL_GETSTATE;
+            retval = Send("ma", 
+                getstate ? Hex.ToHex(255) : String.Format("0 {0:x} 10", channel), 
+                getstate, out actual_string);
+            try
+            {
+                actual_string = actual_string.Substring(2, actual_string.Length - 4);
+                actual = Hex.FromHex(actual_string);
+            }
+            catch
+            {
+                actual = -1;
+            }
+            return retval;
         }
 
         /// <summary>
@@ -603,9 +686,13 @@ namespace TVControl
         /// </summary>
         /// <returns>Status or data</returns>
         /// <param name="input">Input or query</param>
-        public Tuple<bool,string> SendInput(Input input)
+        /// <param name = "state">Actual input</param>
+        public bool SendInput(Input input, out Input state)
         {
-            return Send("xb", ToHex((byte)input));
+            int inp; 
+            bool a = Send("xb", input == Input.GetStatus, (int)input, out inp);
+            state = (Input)inp;
+            return a;
         }
 
         /// <summary>
@@ -614,7 +701,21 @@ namespace TVControl
         /// <returns><c>true</c>, if success, <c>false</c> otherwise.</returns>
         public bool SendAutoConfig()
         {
-            return Send("ju", ToHex(1)).Item1;
+            string nic;
+            return Send("ju", Hex.ToHex(1), false, out nic);
+        }
+
+
+        bool Send(string command, bool request, int data, out int result)
+        {
+            string actual_string;
+            string data_string = Hex.ToHex(data);
+            bool success = Send(command, data_string, request, out actual_string);
+            if (success)
+                result = Hex.FromHex(actual_string);
+            else
+                result = 0;
+            return success;
         }
     }
 }

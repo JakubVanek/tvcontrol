@@ -39,7 +39,9 @@ public partial class MainWindow: Gtk.Window
 
     bool Timer_Tick()
     {
-        bool on = tv.SendPower(LGTV.Power.GetStatus).Item2 == "01";
+        LGTV.Power actual;
+        tv.SendPower(LGTV.Power.GetStatus, out actual);
+        bool on = actual == LGTV.Power.PowerOn;
         if (on)
         {
             tvimage.SetFromIconName("gtk-yes", IconSize.LargeToolbar);
@@ -50,10 +52,10 @@ public partial class MainWindow: Gtk.Window
             tvimage.SetFromIconName("gtk-no", IconSize.LargeToolbar);
             tvstate.Text = "Vypnuto";
         }
-        var aspectt = tv.SendAspect(LGTV.AspectRatio.GetStatus);
-        if (aspectt.Item1)
+        LGTV.AspectRatio aspectt;
+        if (tv.SendAspect(LGTV.AspectRatio.GetStatus, out aspectt))
         {
-            switch ((LGTV.AspectRatio)Convert.ToByte(aspectt.Item2, 16))
+            switch (aspectt)
             {
                 case LGTV.AspectRatio.Normal:
                     aspect.Text = "4:3";
@@ -85,28 +87,24 @@ public partial class MainWindow: Gtk.Window
         {
             aspect.Markup = "<i>Neznámý</i>";
         }
-        var volumett = tv.SendVolume(255);
-        if (volumett.Item1)
+        int volumett;
+        if (tv.SendVolume(255, out volumett))
         {
-            int volume = Convert.ToInt32(volumett.Item2, 16);
-            volumeview.Text = Convert.ToString(volume);
+            volumeview.Text = Convert.ToString(volumett);
         }
         else
             volumeview.Markup = "<i>Neznámá</i>";
-        var programtt = tv.SendChannel(LGTV.SendChannelGetState);
-        if (programtt.Item1)
+        int programtt;
+        if (tv.SendChannel(LGTV.CHANNEL_GETSTATE, out programtt))
         {
-            string program = programtt.Item2.Substring(2, programtt.Item2.Length - 4);
-            string final = Convert.ToString(Convert.ToInt32(program, 16));
-            programview.Text = final;
+            programview.Text = Convert.ToString(programtt);
         }
         else
             programview.Markup = "<i>Neznámý</i>";
-        var inputt = tv.SendInput(LGTV.Input.GetStatus);
-        if (inputt.Item1)
+        LGTV.Input inputt;
+        if (tv.SendInput(LGTV.Input.GetStatus, out inputt))
         {
-            var i = (LGTV.Input)Convert.ToByte(inputt.Item2, 16);
-            switch (i)
+            switch (inputt)
             {
                 case LGTV.Input.DTV:
                     inputview.Text = "DTV";
@@ -127,7 +125,7 @@ public partial class MainWindow: Gtk.Window
                     inputview.Text = "RGB";
                     break;
             }
-            if (i == LGTV.Input.RGB)
+            if (inputt == LGTV.Input.RGB)
                 autoconf.Sensitive = true;
             else
                 autoconf.Sensitive = false;
@@ -450,7 +448,8 @@ public partial class MainWindow: Gtk.Window
                 a = LGTV.AspectRatio.FullWide;
                 break;
         }
-        tv.SendAspect(a);
+        LGTV.AspectRatio nic;
+        tv.SendAspect(a, out nic);
         Timer_Tick();
     }
 
@@ -461,7 +460,8 @@ public partial class MainWindow: Gtk.Window
         byte volume = Convert.ToByte(volumeselect.Value);
         if (volume > 20 || volume < 0)
             return;
-        tv.SendVolume(volume);
+        int nic;
+        tv.SendVolume(volume, out nic);
         Timer_Tick();
     }
 
@@ -479,8 +479,9 @@ public partial class MainWindow: Gtk.Window
     {
         if (!connected)
             return;
-        byte channel = Convert.ToByte(programselect.Value);
-        tv.SendChannel(channel);
+        int channel = Convert.ToInt32(programselect.Value);
+        int nic;
+        tv.SendChannel(channel, out nic);
         Timer_Tick();
     }
 
@@ -516,7 +517,8 @@ public partial class MainWindow: Gtk.Window
                 i = LGTV.Input.RGB;
                 break;
         }
-        tv.SendInput(i);
+        LGTV.Input nic;
+        tv.SendInput(i, out nic);
         Timer_Tick();
     }
 

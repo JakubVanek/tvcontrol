@@ -36,6 +36,7 @@
     <Compile Include="Exceptions.cs">
       <DependentUpon>LGTV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hex.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

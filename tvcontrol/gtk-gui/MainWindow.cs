@@ -944,7 +944,7 @@ public partial class MainWindow
 		this.down.Name = "down";
 		this.down.UseUnderline = true;
 		global::Gtk.Image w65 = new global::Gtk.Image ();
-		w65.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_down", global::Gtk.IconSize.Button);
+		w65.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_down", global::Gtk.IconSize.Menu);
 		this.down.Image = w65;
 		this.table1.Add (this.down);
 		global::Gtk.Table.TableChild w66 = ((global::Gtk.Table.TableChild)(this.table1 [this.down]));
@@ -1060,7 +1060,7 @@ public partial class MainWindow
 		this.left.Name = "left";
 		this.left.UseUnderline = true;
 		global::Gtk.Image w77 = new global::Gtk.Image ();
-		w77.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_left", global::Gtk.IconSize.Button);
+		w77.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_left", global::Gtk.IconSize.Menu);
 		this.left.Image = w77;
 		this.table1.Add (this.left);
 		global::Gtk.Table.TableChild w78 = ((global::Gtk.Table.TableChild)(this.table1 [this.left]));
@@ -1092,7 +1092,7 @@ public partial class MainWindow
 		this.right.Name = "right";
 		this.right.UseUnderline = true;
 		global::Gtk.Image w81 = new global::Gtk.Image ();
-		w81.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_right", global::Gtk.IconSize.Button);
+		w81.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_right", global::Gtk.IconSize.Menu);
 		this.right.Image = w81;
 		this.table1.Add (this.right);
 		global::Gtk.Table.TableChild w82 = ((global::Gtk.Table.TableChild)(this.table1 [this.right]));
@@ -1108,7 +1108,7 @@ public partial class MainWindow
 		this.up.Name = "up";
 		this.up.UseUnderline = true;
 		global::Gtk.Image w83 = new global::Gtk.Image ();
-		w83.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_up", global::Gtk.IconSize.Button);
+		w83.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_up", global::Gtk.IconSize.Menu);
 		this.up.Image = w83;
 		this.table1.Add (this.up);
 		global::Gtk.Table.TableChild w84 = ((global::Gtk.Table.TableChild)(this.table1 [this.up]));
@@ -1174,7 +1174,7 @@ public partial class MainWindow
 		this.vdown.Name = "vdown";
 		this.vdown.UseUnderline = true;
 		global::Gtk.Image w91 = new global::Gtk.Image ();
-		w91.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_down", global::Gtk.IconSize.Button);
+		w91.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_down", global::Gtk.IconSize.Menu);
 		this.vdown.Image = w91;
 		this.vbox7.Add (this.vdown);
 		global::Gtk.Box.BoxChild w92 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.vdown]));
@@ -1238,7 +1238,7 @@ public partial class MainWindow
 		this.pup.Name = "pup";
 		this.pup.UseUnderline = true;
 		global::Gtk.Image w99 = new global::Gtk.Image ();
-		w99.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_up", global::Gtk.IconSize.Button);
+		w99.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_up", global::Gtk.IconSize.Menu);
 		this.pup.Image = w99;
 		this.vbox6.Add (this.pup);
 		global::Gtk.Box.BoxChild w100 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.pup]));
@@ -1260,7 +1260,7 @@ public partial class MainWindow
 		this.pdown.Name = "pdown";
 		this.pdown.UseUnderline = true;
 		global::Gtk.Image w102 = new global::Gtk.Image ();
-		w102.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_down", global::Gtk.IconSize.Button);
+		w102.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_down", global::Gtk.IconSize.Menu);
 		this.pdown.Image = w102;
 		this.vbox6.Add (this.pdown);
 		global::Gtk.Box.BoxChild w103 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.pdown]));

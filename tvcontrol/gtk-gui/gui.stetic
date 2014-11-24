@@ -739,8 +739,9 @@
                               <widget class="Gtk.Button" id="markfav">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
-                                <property name="Type">TextOnly</property>
-                                <property name="Label" translatable="yes">MARKFAV</property>
+                                <property name="Type">TextAndIcon</property>
+                                <property name="Icon">stock:stock_add-bookmark Button</property>
+                                <property name="Label" translatable="yes">M.FAV</property>
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="markfavh" />
                               </widget>
@@ -859,7 +860,8 @@
                               <widget class="Gtk.Button" id="text">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
-                                <property name="Type">TextOnly</property>
+                                <property name="Type">TextAndIcon</property>
+                                <property name="Icon">stock:gtk-file Button</property>
                                 <property name="Label" translatable="yes">TEXT</property>
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="texth" />
@@ -1591,7 +1593,7 @@
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
-                                <property name="Icon">stock:gtk-index Menu</property>
+                                <property name="Icon">stock:gtk-index Button</property>
                                 <property name="Label" translatable="yes">LIST</property>
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="listh" />
