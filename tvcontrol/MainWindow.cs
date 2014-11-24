@@ -413,7 +413,7 @@ public partial class MainWindow: Gtk.Window
         int channel = 1;
         int.TryParse(programview.Text, out channel);
         programselect.Value = Convert.ToInt32(channel);
-        timerid = GLib.Timeout.Add(5000, handler);
+        timerid = GLib.Timeout.Add(3000, handler);
     }
 
     protected void sendaspect(object sender, EventArgs e)

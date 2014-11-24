@@ -22,6 +22,8 @@
 
 using System;
 using System.IO.Ports;
+using System.Timers;
+using Thread = System.Threading.Thread;
 
 namespace TVControl
 {
@@ -33,7 +35,7 @@ namespace TVControl
         /// <summary>
         /// Timeout for serial port
         /// </summary>
-        public const int TIMEOUT = 500;
+        public const int TIMEOUT = 100;
 
 
         /// <summary>
@@ -54,6 +56,8 @@ namespace TVControl
 
         // Port
         SerialPort port;
+        // lock
+        Object locker;
 
         // Constructors
         /// <summary>
@@ -71,6 +75,7 @@ namespace TVControl
                 WriteTimeout = TIMEOUT
             };
             this.ID = id;
+            locker = new Object();
         }
 
 
@@ -306,55 +311,72 @@ namespace TVControl
         /// <returns>Success or fail</returns>
         public bool Send(string command, string data, bool requestAnswer, out string answer)
         {
-            answer = null;
-            if (!this.Open)
-                throw new ConnNotOpenException("Connection not opened!!!");
-            if (!requestAnswer)
+            lock (locker)
             {
-                try
+                answer = "0";
+                if (!this.Open)
+                    throw new ConnNotOpenException("Connection not opened!!!");
+                if (!requestAnswer)
                 {
-                    Write(command, data);
-                    port.ReadTimeout = TIMEOUT / 4;
-                    bool success1 = ParseReturn(port.ReadTo("x"), out answer);
-                    return success1;
-                }
-                catch (TimeoutException)
-                {
-                }
-                finally
-                {
-                    port.ReadTimeout = TIMEOUT;
-                }
-            }
-
-
-            bool success = false;
-            int remaining = 1;
-            bool ok = false;
-            while (!ok)
-            {
-                try
-                {
-                    Write(command, data);
-                    success = ParseReturn(port.ReadTo("x"), out answer);
-                    ok = true;
-                }
-                catch (TimeoutException)
-                {
-                    if (remaining != 0)
+                    try
                     {
+                        Write(command, data);
+                        port.ReadTimeout = TIMEOUT / 4;
+                        bool success1 = ParseReturn(port.ReadTo("x"), out answer);
+                        return success1;
+                    }
+                    catch (TimeoutException)
+                    {
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        answer = "0";
+                        return false;
+                    }
+                    finally
+                    {
+                        port.ReadTimeout = TIMEOUT;
+                    }
+                }
+
+
+                bool success = false;
+                int remaining = 1;
+                bool ok = false;
+                while (!ok)
+                {
+                    try
+                    {
+                        Write(command, data);
+                        success = ParseReturn(port.ReadTo("x"), out answer);
+                        ok = true;
+                    }
+                    catch (TimeoutException)
+                    {
+                        if (remaining != 0)
+                        {
+                            #if DEBUG
                         Console.Error.WriteLine("warn: timeout reached, remaining {0}", remaining);
-                        remaining--;
-                        continue;
-                    }
-                    else
-                    {
+                            #endif
+                            remaining--;
+                            continue;
+                        }
+                        else
+                        {
+                            #if DEBUG
                         Console.Error.WriteLine("warn: timeout reached, no answer");
-                        break;
+                            #endif
+                            break;
+                        }
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        answer = "0";
+                        return false;
                     }
                 }
+                return success; 
             }
-            return success; 
         }
 
         /// <summary>
