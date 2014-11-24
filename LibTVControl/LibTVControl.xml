@@ -9,24 +9,23 @@
             LG TV controlling interface.
             </summary>
         </member>
-        <member name="P:TVControl.LGTV.ConnOpened">
+        <member name="F:TVControl.LGTV.TIMEOUT">
+            <summary>
+            Timeout for serial port
+            </summary>
+        </member>
+        <member name="P:TVControl.LGTV.Open">
             <summary>
             Gets a value indicating whether is serial connection open.
             </summary>
             <value>
                 <c>true</c> if open; otherwise, <c>false</c>.</value>
         </member>
-        <member name="P:TVControl.LGTV.ID">
-            <summary>
-            ID of TV
-            </summary>
-            <value>The ID</value>
-        </member>
         <member name="M:TVControl.LGTV.#ctor(System.String,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:TVControl.LGTV" /> class.
             </summary>
-            <param name="device">Device, /dev/ttyS0... or COM1...</param>
+            <param name="device">Device, /dev/ttyS[0-...] or COM[1-...] -&gt; /dev/ttyS3 or COM1</param>
             <param name="id">TV ID</param>
         </member>
         <member name="M:TVControl.LGTV.Init">
@@ -261,12 +260,22 @@
             Mark Fav key
             </summary>
         </member>
-        <member name="M:TVControl.LGTV.Send(System.String,System.String)">
+        <member name="M:TVControl.LGTV.Write(System.String,System.String)">
+            <summary>
+            Write a command with data for specific TV to serial port
+            </summary>
+            <param name="command">Command</param>
+            <param name="data">Data.</param>
+        </member>
+        <member name="M:TVControl.LGTV.Send(System.String,System.String,System.Boolean,System.String@)">
             <summary>
             Send the specified command with specified data.
             </summary>
             <param name="command">Command.</param>
             <param name="data">Data.</param>
+            <param name="requestAnswer">Whether to request answer from the TV or not.</param>
+            <param name="answer">Answered value or null.</param>
+            <returns>Success or fail</returns>
         </member>
         <member name="M:TVControl.LGTV.SendKey(TVControl.LGTV.TVKey)">
             <summary>
@@ -276,26 +285,14 @@
                 <c>true</c>, if key was sent, <c>false</c> otherwise.</returns>
             <param name="key">Key.</param>
         </member>
-        <member name="M:TVControl.LGTV.ToHex(System.Int32)">
-            <summary>
-            Converts number to hex notation.
-            </summary>
-            <returns>Hex.</returns>
-            <param name="number">Number.</param>
-        </member>
-        <member name="M:TVControl.LGTV.ToHex(System.Byte)">
-            <summary>
-            Convert number to hex notation.
-            </summary>
-            <returns>Hex.</returns>
-            <param name="number">Number.</param>
-        </member>
-        <member name="M:TVControl.LGTV.ParseReturn(System.String)">
+        <member name="M:TVControl.LGTV.ParseReturn(System.String,System.String@)">
             <summary>
             Parses the TV return code.
             </summary>
             <returns>The .</returns>
             <param name="retval">Retval.</param>
+            <param name="answer">
+            </param>
         </member>
         <member name="T:TVControl.LGTV.Power">
             <summary>
@@ -317,12 +314,13 @@
             Query power status.
             </summary>
         </member>
-        <member name="M:TVControl.LGTV.SendPower(TVControl.LGTV.Power)">
+        <member name="M:TVControl.LGTV.SendPower(TVControl.LGTV.Power,TVControl.LGTV.Power@)">
             <summary>
             Sends power command to TV.
             </summary>
             <returns>Status or data</returns>
             <param name="pwr">Mode or query</param>
+            <param name="actual">Actual mode</param>
         </member>
         <member name="T:TVControl.LGTV.AspectRatio">
             <summary>
@@ -374,12 +372,13 @@
             Query aspect ratio.
             </summary>
         </member>
-        <member name="M:TVControl.LGTV.SendAspect(TVControl.LGTV.AspectRatio)">
+        <member name="M:TVControl.LGTV.SendAspect(TVControl.LGTV.AspectRatio,TVControl.LGTV.AspectRatio@)">
             <summary>
             Sends aspect command to TV.
             </summary>
             <returns>Status or data</returns>
             <param name="aspect">Mode or query</param>
+            <param name="actual">Actual aspect ration</param>
         </member>
         <member name="T:TVControl.LGTV.ScreenMute">
             <summary>
@@ -406,12 +405,13 @@
             Query screen mute.
             </summary>
         </member>
-        <member name="M:TVControl.LGTV.SendScrMute(TVControl.LGTV.ScreenMute)">
+        <member name="M:TVControl.LGTV.SendScrMute(TVControl.LGTV.ScreenMute,TVControl.LGTV.ScreenMute@)">
             <summary>
             Sends screen mute command to TV.
             </summary>
             <returns>Status or data</returns>
             <param name="mute">Mode or query</param>
+            <param name="actual">Actual screen mute</param>
         </member>
         <member name="T:TVControl.LGTV.Volume">
             <summary>
@@ -433,19 +433,21 @@
             Query volume mute.
             </summary>
         </member>
-        <member name="M:TVControl.LGTV.SendVolumeMute(TVControl.LGTV.Volume)">
+        <member name="M:TVControl.LGTV.SendVolumeMute(TVControl.LGTV.Volume,TVControl.LGTV.Volume@)">
             <summary>
             Sends volume mute command to TV.
             </summary>
             <returns>Status or data</returns>
             <param name="volume">Mode or query</param>
+            <param name="actual">Actual volume mute</param>
         </member>
-        <member name="M:TVControl.LGTV.SendVolume(System.Byte)">
+        <member name="M:TVControl.LGTV.SendVolume(System.Int32,System.Int32@)">
             <summary>
             Sends the volume change command to TV.
             </summary>
             <returns>Status or data</returns>
             <param name="level">Level or query (query=255)</param>
+            <param name="actual">Actual volume</param>
         </member>
         <member name="T:TVControl.LGTV.EnergySaving">
             <summary>
@@ -482,24 +484,26 @@
             Query energy saving status.
             </summary>
         </member>
-        <member name="M:TVControl.LGTV.SendEnergySaving(TVControl.LGTV.EnergySaving)">
+        <member name="M:TVControl.LGTV.SendEnergySaving(TVControl.LGTV.EnergySaving,TVControl.LGTV.EnergySaving@)">
             <summary>
             Sends the energy saving mode change command to TV.
             </summary>
             <returns>Status or data</returns>
             <param name="mode">Mode or query</param>
+            <param name="actual">Actual energy saving</param>
         </member>
-        <member name="F:TVControl.LGTV.SendChannelGetState">
+        <member name="F:TVControl.LGTV.CHANNEL_GETSTATE">
             <summary>
             Query code for SendChannel function.
             </summary>
         </member>
-        <member name="M:TVControl.LGTV.SendChannel(System.Int32)">
+        <member name="M:TVControl.LGTV.SendChannel(System.Int32,System.Int32@)">
             <summary>
             Sends the channel mode change command to TV.
             </summary>
             <returns>Status or data</returns>
             <param name="channel">Channel or query</param>
+            <param name="actual">Actual channel</param>
         </member>
         <member name="T:TVControl.LGTV.Input">
             <summary>
@@ -541,12 +545,13 @@
             The get status.
             </summary>
         </member>
-        <member name="M:TVControl.LGTV.SendInput(TVControl.LGTV.Input)">
+        <member name="M:TVControl.LGTV.SendInput(TVControl.LGTV.Input,TVControl.LGTV.Input@)">
             <summary>
             Sends the input command to TV.
             </summary>
             <returns>Status or data</returns>
             <param name="input">Input or query</param>
+            <param name="state">Actual input</param>
         </member>
         <member name="M:TVControl.LGTV.SendAutoConfig">
             <summary>
@@ -584,6 +589,32 @@
             </summary>
             <param name="context">The contextual information about the source or destination.</param>
             <param name="info">The object that holds the serialized object data.</param>
+        </member>
+        <member name="T:TVControl.Hex">
+            <summary>
+            Hex-string support
+            </summary>
+        </member>
+        <member name="M:TVControl.Hex.ToHex(System.Int32)">
+            <summary>
+            Converts number to hex notation.
+            </summary>
+            <returns>Hex.</returns>
+            <param name="number">Number.</param>
+        </member>
+        <member name="M:TVControl.Hex.ToHex(System.Byte)">
+            <summary>
+            Convert number to hex notation.
+            </summary>
+            <returns>Hex.</returns>
+            <param name="number">Number.</param>
+        </member>
+        <member name="M:TVControl.Hex.FromHex(System.String)">
+            <summary>
+            Convert hex string to Int32
+            </summary>
+            <returns>Int32</returns>
+            <param name="number">Hex string</param>
         </member>
     </members>
 </doc>
