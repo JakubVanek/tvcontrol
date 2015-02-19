@@ -1,0 +1,5 @@
+language: csharp
+solution: tvcontrol.sln
+script:
+  - xbuild /p:Configuration=Release /t:Clean
+  - xbuild /p:Configuration=Release tvcontrol/TVControl.csproj
