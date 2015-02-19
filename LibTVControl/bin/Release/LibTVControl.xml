@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibTVControl</name>
+    </assembly>
+    <members>
+        <member name="T:TVControl.LGTV">
+            <summary>
+            LG TV controlling interface.
+            </summary>
+        </member>
+        <member name="F:TVControl.LGTV.TIMEOUT">
+            <summary>
+            Timeout for serial port
+            </summary>
+        </member>
+        <member name="P:TVControl.LGTV.Open">
+            <summary>
+            Gets a value indicating whether is serial connection open.
+            </summary>
+            <value>
+                <c>true</c> if open; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="F:TVControl.LGTV.returns">
+            <summary>
+            Scheduled returns of data
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.LGTV" /> class.
+            </summary>
+            <param name="device">Device, /dev/ttyS[0-...] or COM[1-...] -&gt; /dev/ttyS3 or COM1</param>
+            <param name="id">TV ID</param>
+        </member>
+        <member name="M:TVControl.LGTV.Init">
+            <summary>
+            Init this instance.
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.Close">
+            <summary>
+            Close this instance.
+            </summary>
+        </member>
+        <member name="T:TVControl.LGTV.Data">
+            <summary>
+            Return data types
+            </summary>
+        </member>
+        <member name="M:TVControl.LGTV.Write(System.String,System.String)">
+            <summary>
+            Write a command with data for specific TV to serial port
+            </summary>
+            <param name="command">Command</param>
+            <param name="data">Data.</param>
+        </member>
+        <member name="M:TVControl.LGTV.Write(System.String)">
+            <summary>
+            Write the specified command.
+            </summary>
+            <param name="command">Command.</param>
+        </member>
+        <member name="M:TVControl.LGTV.Send(System.String,System.String,System.Boolean,System.String@)">
+            <summary>
+            Send the specified command with specified data.
+            </summary>
+            <param name="command">Command.</param>
+            <param name="data">Data.</param>
+            <param name="requestAnswer">Whether to request answer from the TV or not.</param>
+            <param name="answer">Answered value or null.</param>
+            <returns>Success or fail</returns>
+        </member>
+        <member name="M:TVControl.LGTV.ParseReturn(System.String,System.String@)">
+            <summary>
+            Parses the TV return code.
+            </summary>
+            <returns>The .</returns>
+            <param name="retval">Retval.</param>
+            <param name="answer">
+            </param>
+        </member>
+        <member name="M:TVControl.LGTV.SendRetInt(System.String,System.Int32)">
+            <summary>
+            Sends command with specified integer as an argument and schedules return.
+            </summary>
+            <param name="CMD">CMD</param>
+            <param name="value">Argument</param>
+        </member>
+        <member name="M:TVControl.LGTV.SendRetString(System.String,System.String)">
+            <summary>
+            Sends command with specified string as an argument and schedules return.
+            </summary>
+            <param name="CMD">CMD</param>
+            <param name="value">Argument</param>
+        </member>
+        <member name="M:TVControl.LGTV.PollEvents">
+            <summary>
+            Handles scheduled returns
+            </summary>
+        </member>
+        <member name="T:TVControl.Function.ConnNotOpenException">
+            <summary>
+            Connection not open exception.
+            </summary>
+        </member>
+        <member name="M:TVControl.Function.ConnNotOpenException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.Function.ConnNotOpenException" /> class
+            </summary>
+        </member>
+        <member name="M:TVControl.Function.ConnNotOpenException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.Function.ConnNotOpenException" /> class
+            </summary>
+            <param name="message">A <see cref="T:System.String" /> that describes the exception. </param>
+        </member>
+        <member name="M:TVControl.Function.ConnNotOpenException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.Function.ConnNotOpenException" /> class
+            </summary>
+            <param name="message">A <see cref="T:System.String" /> that describes the exception. </param>
+            <param name="inner">The exception that is the cause of the current exception. </param>
+        </member>
+        <member name="M:TVControl.Function.ConnNotOpenException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TVControl.Function.ConnNotOpenException" /> class
+            </summary>
+            <param name="context">The contextual information about the source or destination.</param>
+            <param name="info">The object that holds the serialized object data.</param>
+        </member>
+        <member name="T:TVControl.Hex">
+            <summary>
+            Hex-string support
+            </summary>
+        </member>
+        <member name="M:TVControl.Hex.ToHex(System.Int32)">
+            <summary>
+            Converts number to hex notation.
+            </summary>
+            <returns>Hex.</returns>
+            <param name="number">Number.</param>
+        </member>
+        <member name="M:TVControl.Hex.ToHex(System.Byte)">
+            <summary>
+            Convert number to hex notation.
+            </summary>
+            <returns>Hex.</returns>
+            <param name="number">Number.</param>
+        </member>
+        <member name="M:TVControl.Hex.FromHex(System.String)">
+            <summary>
+            Convert hex string to Int32
+            </summary>
+            <returns>Int32</returns>
+            <param name="number">Hex string</param>
+        </member>
+    </members>
+</doc>

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6056B806-5A82-4AE0-B9AB-976D9AF7C1B9}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>TVControl</RootNamespace>
+    <RootNamespace>LGTVControl</RootNamespace>
     <AssemblyName>LibTVControl</AssemblyName>
     <CodePage>65001</CodePage>
   </PropertyGroup>
@@ -32,11 +32,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LGTV.cs" />
-    <Compile Include="Exceptions.cs">
-      <DependentUpon>LGTV.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Hex.cs" />
+    <Compile Include="LGTVControl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
 </Project>

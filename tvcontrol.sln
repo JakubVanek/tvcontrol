@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVControl", "tvcontrol\TVControl.csproj", "{DCACE5E2-5083-41F3-83C5-34DE1739E853}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibTVControl", "LibTVControl\LibTVControl.csproj", "{6056B806-5A82-4AE0-B9AB-976D9AF7C1B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibLGTVControl", "LibTVControl\LibLGTVControl.csproj", "{6056B806-5A82-4AE0-B9AB-976D9AF7C1B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lgtvcontrol-server", "lgtvcontrol-server\lgtvcontrol-server.csproj", "{F951D6EF-8B39-41F8-AF74-29DA6A919B2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libsettings-sharp", "libsettings-sharp\libsettings-sharp.csproj", "{5037B4B7-3DC3-4594-8B07-5AEE19264F28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libtvcontrol.LG", "libtvcontrol-lg\Libtvcontrol.LG.csproj", "{1AD8E390-3F9D-4ED0-992E-701B75FA7136}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,6 +17,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1AD8E390-3F9D-4ED0-992E-701B75FA7136}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1AD8E390-3F9D-4ED0-992E-701B75FA7136}.Debug|x86.Build.0 = Debug|Any CPU
+		{1AD8E390-3F9D-4ED0-992E-701B75FA7136}.Release|x86.ActiveCfg = Release|Any CPU
+		{1AD8E390-3F9D-4ED0-992E-701B75FA7136}.Release|x86.Build.0 = Release|Any CPU
+		{5037B4B7-3DC3-4594-8B07-5AEE19264F28}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5037B4B7-3DC3-4594-8B07-5AEE19264F28}.Debug|x86.Build.0 = Debug|Any CPU
+		{5037B4B7-3DC3-4594-8B07-5AEE19264F28}.Release|x86.ActiveCfg = Release|Any CPU
+		{5037B4B7-3DC3-4594-8B07-5AEE19264F28}.Release|x86.Build.0 = Release|Any CPU
 		{6056B806-5A82-4AE0-B9AB-976D9AF7C1B9}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{6056B806-5A82-4AE0-B9AB-976D9AF7C1B9}.Debug|x86.Build.0 = Debug|Any CPU
 		{6056B806-5A82-4AE0-B9AB-976D9AF7C1B9}.Release|x86.ActiveCfg = Release|Any CPU
@@ -19,9 +33,12 @@ Global
 		{DCACE5E2-5083-41F3-83C5-34DE1739E853}.Debug|x86.Build.0 = Debug|x86
 		{DCACE5E2-5083-41F3-83C5-34DE1739E853}.Release|x86.ActiveCfg = Release|x86
 		{DCACE5E2-5083-41F3-83C5-34DE1739E853}.Release|x86.Build.0 = Release|x86
+		{F951D6EF-8B39-41F8-AF74-29DA6A919B2A}.Debug|x86.ActiveCfg = Debug|x86
+		{F951D6EF-8B39-41F8-AF74-29DA6A919B2A}.Debug|x86.Build.0 = Debug|x86
+		{F951D6EF-8B39-41F8-AF74-29DA6A919B2A}.Release|x86.ActiveCfg = Release|x86
+		{F951D6EF-8B39-41F8-AF74-29DA6A919B2A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = tvcontrol\TVControl.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
@@ -29,7 +46,7 @@ Global
 		$0.VersionControlPolicy = $2
 		$2.inheritsSet = Mono
 		$0.StandardHeader = $3
-		$3.Text = @ \r\n ${FileName}\n \n Author:\n      ${AuthorName} <${AuthorEmail}>\n\n Copyright (c) ${Year} ${CopyrightHolder}\n\n This program is free software: you can redistribute it and/or modify\n it under the terms of the GNU General Public License as published by\n the Free Software Foundation, either version 3 of the License, or\n (at your option) any later version.\n\n This program is distributed in the hope that it will be useful,\n but WITHOUT ANY WARRANTY; without even the implied warranty of\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n GNU General Public License for more details.\n\n You should have received a copy of the GNU General Public License\n along with this program.  If not, see <http://www.gnu.org/licenses/>.
+		$3.Text = @\n ${FileName}\n \n Author:\n      ${AuthorName} <${AuthorEmail}>\n\n Copyright (c) ${Year} ${CopyrightHolder}\n\n This program is free software; you can redistribute it and/or modify\n it under the terms of the GNU General Public License as published by\n the Free Software Foundation; either version 2 of the License, or\n (at your option) any later version.\n\n This program is distributed in the hope that it will be useful,\n but WITHOUT ANY WARRANTY; without even the implied warranty of\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n GNU General Public License for more details.\n \n You should have received a copy of the GNU General Public License\n along with this program; if not, write to the Free Software\n Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA\n
 		$3.IncludeInNewFiles = True
 		$0.NameConventionPolicy = $4
 		$4.Rules = $5

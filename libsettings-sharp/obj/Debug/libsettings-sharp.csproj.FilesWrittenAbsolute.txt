@@ -1,0 +1,5 @@
+/home/kuba/tvcontrol-repo/libsettings-sharp/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/kuba/tvcontrol-repo/libsettings-sharp/bin/Debug/SheetLib.dll.mdb
+/home/kuba/tvcontrol-repo/libsettings-sharp/bin/Debug/SheetLib.dll
+/home/kuba/tvcontrol-repo/libsettings-sharp/obj/Debug/SheetLib.dll
+/home/kuba/tvcontrol-repo/libsettings-sharp/obj/Debug/SheetLib.dll.mdb

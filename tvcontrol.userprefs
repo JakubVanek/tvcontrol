@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="tvcontrol/TVControl.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="libtvcontrol-lg/SerialConn.cs">
+    <Files>
+      <File FileName="tvcontrol/Program.cs" Line="1" Column="1" />
+      <File FileName="libtvcontrol-lg/IntegerCommand.cs" Line="15" Column="15" />
+      <File FileName="libtvcontrol-lg/SerialConn.cs" Line="14" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <AuthorInfo Name="Jakub Vaněk" Email="vanek.jakub4@seznam.cz" Copyright="GNU GPL v2.0" Company="" Trademark="" />
+</Properties>

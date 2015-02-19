@@ -1,0 +1,10 @@
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/bin/Debug/lgtvcontrol-server.exe.mdb
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/bin/Debug/lgtvcontrol-server.exe
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/obj/x86/Debug/lgtvcontrol-server.exe
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/obj/x86/Debug/lgtvcontrol-server.exe.mdb
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/bin/Debug/NDesk.Options.dll
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/bin/Debug/LibTVControl.dll
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/bin/Debug/LibTVControl.dll.mdb
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/bin/Debug/SheetLib.dll
+/home/kuba/tvcontrol-repo/lgtvcontrol-server/bin/Debug/SheetLib.dll.mdb

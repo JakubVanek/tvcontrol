@@ -26,10 +26,10 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("LibTVControl")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("Mono/.NET 4.0")]
+[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("KubaVanek:-)")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("GPL v. 3.0")]
+[assembly: AssemblyCopyright("GNU GPL v2.0")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,0 +1,12 @@
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Debug/TVControl.gtk-gui.gui.stetic
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Debug/TVControl.blue.png
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Debug/TVControl.green.png
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Debug/TVControl.red.png
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Debug/TVControl.yellow.png
+/home/kuba/tvcontrol-repo/tvcontrol/bin/Debug/tvcontrol.exe.mdb
+/home/kuba/tvcontrol-repo/tvcontrol/bin/Debug/tvcontrol.exe
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Debug/tvcontrol.exe
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Debug/tvcontrol.exe.mdb
+/home/kuba/tvcontrol-repo/tvcontrol/bin/Debug/libtvcontrol-lg.dll
+/home/kuba/tvcontrol-repo/tvcontrol/bin/Debug/libtvcontrol-lg.dll.mdb

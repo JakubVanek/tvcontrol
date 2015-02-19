@@ -1,0 +1,3 @@
+/home/kuba/tvcontrol-repo/LibTVControl/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/kuba/tvcontrol-repo/LibTVControl/bin/Release/LibTVControl.dll
+/home/kuba/tvcontrol-repo/LibTVControl/obj/Release/LibTVControl.dll

@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace TVControl
+namespace Libtvcontrol.LG
 {
     /// <summary>
     /// Hex-string support
@@ -32,19 +32,9 @@ namespace TVControl
         /// </summary>
         /// <returns>Hex.</returns>
         /// <param name="number">Number.</param>
-        public static string ToHex(int number)
+        public static string To(int number)
         {
-            return number.ToString("x");
-        }
-
-        /// <summary>
-        /// Convert number to hex notation.
-        /// </summary>
-        /// <returns>Hex.</returns>
-        /// <param name="number">Number.</param>
-        public static string ToHex(byte number)
-        {
-            return number.ToString("x");
+            return number.ToString("X2");
         }
 
         /// <summary>
@@ -52,7 +42,7 @@ namespace TVControl
         /// </summary>
         /// <returns>Int32</returns>
         /// <param name="number">Hex string</param>
-        public static int FromHex(string number)
+        public static int From(string number)
         {
             return Convert.ToInt32(number, 16);
         }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1AD8E390-3F9D-4ED0-992E-701B75FA7136}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Libtvcontrol.LG</RootNamespace>
+    <AssemblyName>libtvcontrol-lg</AssemblyName>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialConn.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="Commands\AspectRatio.cs" />
+    <Compile Include="Commands\AutoConfig.cs" />
+    <Compile Include="Commands\Balance.cs" />
+    <Compile Include="Commands\Bass.cs" />
+    <Compile Include="Commands\Brightness.cs" />
+    <Compile Include="Commands\ColorTemp.cs" />
+    <Compile Include="Commands\Colour.cs" />
+    <Compile Include="Commands\Contrast.cs" />
+    <Compile Include="Commands\EnergySaving.cs" />
+    <Compile Include="Commands\Input.cs" />
+    <Compile Include="Commands\OSDshow.cs" />
+    <Compile Include="Commands\Power.cs" />
+    <Compile Include="Commands\ProgrammeUtil.cs" />
+    <Compile Include="Commands\RCControl.cs" />
+    <Compile Include="Commands\ScreenMute.cs" />
+    <Compile Include="Commands\Sharpness.cs" />
+    <Compile Include="Commands\Tint.cs" />
+    <Compile Include="Commands\Treble.cs" />
+    <Compile Include="Commands\Tune.cs" />
+    <Compile Include="Commands\VolumeControl.cs" />
+    <Compile Include="Commands\VolumeMute.cs" />
+    <Compile Include="Hex.cs" />
+    <Compile Include="StringMode.cs" />
+    <Compile Include="IntegerCommand.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
+</Project>

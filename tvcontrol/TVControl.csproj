@@ -71,9 +71,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\LibTVControl\LibTVControl.csproj">
-      <Project>{6056B806-5A82-4AE0-B9AB-976D9AF7C1B9}</Project>
-      <Name>LibTVControl</Name>
+    <ProjectReference Include="..\libtvcontrol-lg\Libtvcontrol.LG.csproj">
+      <Project>{1AD8E390-3F9D-4ED0-992E-701B75FA7136}</Project>
+      <Name>Libtvcontrol.LG</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

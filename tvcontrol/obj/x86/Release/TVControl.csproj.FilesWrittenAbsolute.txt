@@ -1,0 +1,9 @@
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Release/TVControl.gtk-gui.gui.stetic
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Release/TVControl.blue.png
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Release/TVControl.green.png
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Release/TVControl.red.png
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Release/TVControl.yellow.png
+/home/kuba/tvcontrol-repo/tvcontrol/bin/Release/tvcontrol.exe
+/home/kuba/tvcontrol-repo/tvcontrol/obj/x86/Release/tvcontrol.exe
+/home/kuba/tvcontrol-repo/tvcontrol/bin/Release/libtvcontrol-lg.dll

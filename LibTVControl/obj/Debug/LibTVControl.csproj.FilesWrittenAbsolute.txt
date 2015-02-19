@@ -1,0 +1,5 @@
+/home/kuba/tvcontrol-repo/LibTVControl/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/kuba/tvcontrol-repo/LibTVControl/bin/Debug/LibTVControl.dll.mdb
+/home/kuba/tvcontrol-repo/LibTVControl/bin/Debug/LibTVControl.dll
+/home/kuba/tvcontrol-repo/LibTVControl/obj/Debug/LibTVControl.dll
+/home/kuba/tvcontrol-repo/LibTVControl/obj/Debug/LibTVControl.dll.mdb
